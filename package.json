@@ -6,7 +6,7 @@
   "author": "Joel Fragoso <joelfragoso85@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest --watchAll",
     "test:staged": "jest"
   },
   "standard": {
