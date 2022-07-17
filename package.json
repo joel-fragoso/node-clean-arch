@@ -6,9 +6,10 @@
   "author": "Joel Fragoso <joelfragoso85@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --watch --silent --colors --noStackTrace --coverage=false",
-    "test:staged": "jest --passWithNoTests --findRelatedTests --silent --noStackTrace --coverage=false",
-    "test:ci": "jest --coverage --silent --noStackTrace"
+    "test": "jest --silent --colors --noStackTrace --passWithNoTests --coverage=false",
+    "test:unit": "yarn test --watch",
+    "test:staged": "yarn test --findRelatedTests ./src",
+    "test:ci": "yarn test --coverage"
   },
   "standard": {
     "env": ["jest"]
