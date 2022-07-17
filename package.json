@@ -1,0 +1,8 @@
+{
+  "name": "node-clean-arch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:joel-fragoso/node-clean-arch.git",
+  "author": "Joel Fragoso <joelfragoso85@icloud.com>",
+  "license": "MIT"
+}
