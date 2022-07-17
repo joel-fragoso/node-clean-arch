@@ -17,7 +17,7 @@ const makeSut= () => {
   }
 }
 
-describe('Rota Login', () => {
+describe('Login Router', () => {
   test('Deve retornar 400 se não for informado um e-mail', () => {
     const { sut } = makeSut()
     const httpRequest = {
@@ -78,5 +78,29 @@ describe('Rota Login', () => {
     const httpResponse = sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(401)
     expect(httpResponse.body).toEqual(new UnauthorizedError())
+  })
+
+  test('Deve retornar 500 se o AuthUseCase não for informado', () => {
+    const sut = new LoginRouter()
+    const httpRequest = {
+      body: {
+        email: 'johndoe@email.com',
+        password: 'secret'
+      }
+    }
+    const httpResponse = sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
+  })
+
+  test('Deve retornar 500 se o AuthUseCase não tiver o método auth', () => {
+    const sut = new LoginRouter({})
+    const httpRequest = {
+      body: {
+        email: 'johndoe@email.com',
+        password: 'secret'
+      }
+    }
+    const httpResponse = sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(500)
   })
 })
