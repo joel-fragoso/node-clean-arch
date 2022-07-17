@@ -13,7 +13,9 @@
     "test:ci": "yarn test --coverage"
   },
   "standard": {
-    "env": ["jest"]
+    "env": [
+      "jest"
+    ]
   },
   "devDependencies": {
     "husky": "^8.0.1",
@@ -23,6 +25,7 @@
   },
   "dependencies": {
     "express": "^4.18.1",
-    "mongoose": "^6.4.4"
+    "mongoose": "^6.4.4",
+    "validator": "^13.7.0"
   }
 }
