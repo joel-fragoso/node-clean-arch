@@ -6,12 +6,20 @@
   "author": "Joel Fragoso <joelfragoso85@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:staged": "jest"
+  },
+  "standard": {
+    "env": ["jest"]
   },
   "devDependencies": {
     "husky": "^8.0.1",
     "jest": "^28.1.3",
     "lint-staged": "^13.0.3",
     "standard": "^14.3.1"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4"
   }
 }
