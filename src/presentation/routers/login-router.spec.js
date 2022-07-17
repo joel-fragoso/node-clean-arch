@@ -7,9 +7,11 @@ const makeSut= () => {
     auth (email, password) {
       this.email = email
       this.password = password
+      return this.accessToken
     }
   }
   const authUseCaseSpy = new AuthUseCaseSpy()
+  authUseCaseSpy.accessToken = 'accessToken'
   const sut = new LoginRouter(authUseCaseSpy)
   return {
     sut,
@@ -67,8 +69,9 @@ describe('Login Router', () => {
     expect(authUseCaseSpy.password).toBe(httpRequest.body.password)
   })
 
-  test('Deve retornar 401 se as credêncial que foram informadas forem inválidas', () => {
-    const { sut } = makeSut()
+  test('Deve retornar 401 se as credênciais que foram informadas forem inválidas', () => {
+    const { sut, authUseCaseSpy } = makeSut()
+    authUseCaseSpy.accessToken = null
     const httpRequest = {
       body: {
         email: 'invalid@email.com',
@@ -78,6 +81,18 @@ describe('Login Router', () => {
     const httpResponse = sut.route(httpRequest)
     expect(httpResponse.statusCode).toBe(401)
     expect(httpResponse.body).toEqual(new UnauthorizedError())
+  })
+
+  test('Deve retornar 200 se as credênciais forem válidas', () => {
+    const { sut } = makeSut()
+    const httpRequest = {
+      body: {
+        email: 'johndoe@email.com',
+        password: 'secret'
+      }
+    }
+    const httpResponse = sut.route(httpRequest)
+    expect(httpResponse.statusCode).toBe(200)
   })
 
   test('Deve retornar 500 se o AuthUseCase não for informado', () => {
